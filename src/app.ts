@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express';
+import authRoutes from './routes/authRoutes';
 
 const app = express();
 
@@ -11,5 +12,7 @@ app.get('/health', (_req: Request, res: Response) => {
     error: null,
   });
 });
+
+app.use('/v1/auth', authRoutes);
 
 export default app;
