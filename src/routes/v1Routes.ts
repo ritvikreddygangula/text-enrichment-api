@@ -1,4 +1,5 @@
 import { Router, Request, Response } from 'express';
+import * as enrichController from '../controllers/enrichController';
 
 const router = Router();
 
@@ -13,5 +14,11 @@ router.get('/protected-check', (req: Request, res: Response) => {
     error: null,
   });
 });
+
+/**
+ * Enrich text: returns keywords, entities, and category.
+ * POST /v1/enrich with body { "text": "..." }, text length >= 20.
+ */
+router.post('/enrich', enrichController.enrich);
 
 export default router;

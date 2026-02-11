@@ -43,6 +43,8 @@ A backend REST API that accepts text and returns structured JSON (keywords, cate
 
    Or use `npm run db:push`.
 
+   **Redis (rate limiting):** Set `REDIS_URL` in `.env` (e.g. `redis://localhost:6379`). If unset, rate limiting is skipped (requests are still allowed).
+
 4. **Start the server**
 
    ```bash
