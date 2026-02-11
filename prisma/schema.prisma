@@ -15,9 +15,22 @@ model User {
 }
 
 model ApiKey {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId    String   @db.ObjectId
-  keyHash   String   @unique
-  createdAt DateTime @default(now())
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id          String      @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String      @db.ObjectId
+  keyHash     String      @unique
+  createdAt   DateTime    @default(now())
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  requestLogs RequestLog[]
+}
+
+model RequestLog {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  apiKeyId   String   @db.ObjectId
+  method     String
+  path       String
+  statusCode Int
+  durationMs Int
+  textLength Int?
+  createdAt  DateTime @default(now())
+  apiKey     ApiKey   @relation(fields: [apiKeyId], references: [id], onDelete: Cascade)
 }

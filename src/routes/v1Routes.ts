@@ -1,5 +1,6 @@
 import { Router, Request, Response } from 'express';
 import * as enrichController from '../controllers/enrichController';
+import * as usageController from '../controllers/usageController';
 
 const router = Router();
 
@@ -20,5 +21,11 @@ router.get('/protected-check', (req: Request, res: Response) => {
  * POST /v1/enrich with body { "text": "..." }, text length >= 20.
  */
 router.post('/enrich', enrichController.enrich);
+
+/**
+ * Usage logs: last 50 requests for this API key.
+ * GET /v1/usage
+ */
+router.get('/usage', usageController.getUsage);
 
 export default router;
