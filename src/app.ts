@@ -1,13 +1,17 @@
 import express, { Request, Response } from 'express';
+import swaggerUi from 'swagger-ui-express';
 import authRoutes from './routes/authRoutes';
 import v1Routes from './routes/v1Routes';
 import { apiKeyAuth } from './middleware/apiKeyAuth';
 import { rateLimit } from './middleware/rateLimit';
 import { requestLogger } from './middleware/requestLogger';
+import { openApiSpec } from './openapi';
 
 const app = express();
 
 app.use(express.json());
+
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(openApiSpec, { explorer: true }));
 
 app.get('/health', (_req: Request, res: Response) => {
   res.status(200).json({

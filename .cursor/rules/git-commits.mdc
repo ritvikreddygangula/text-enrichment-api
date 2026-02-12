@@ -1,0 +1,11 @@
+---
+description: Git commit conventions - no AI attribution
+alwaysApply: true
+---
+
+# Git Commits
+
+When creating git commits:
+- Use clear, conventional commit messages (feat:, fix:, chore:, etc.)
+- Never add "Co-authored-by", "Signed-off-by", or any AI/agent attribution lines
+- Commit messages must contain only the subject and body—no tool or bot attribution
